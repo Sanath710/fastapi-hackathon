@@ -17,6 +17,11 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content=jsonable_encoder({"detail": exc.errors(), "Error": "Something went wrong"}),
 )
 
+@app.post("/find")
+@app.get("/find")
+async def find(lat : str, lon : str, search_type : str) :
+    return test_scraping.find_nearest(lat, lon, search_type)
+
 @app.post("/search")
 @app.get("/search")
 async def search(query : str) :
