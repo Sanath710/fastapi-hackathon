@@ -61,7 +61,7 @@ def search(query) :
 # In[191]:
 
 
-file = os.getcwd()+"\\first-aid_dataset\\dataset.json"
+file = os.path.join(os.getcwd(),"first-aid_dataset","dataset.json")
 
 dataset = json.load(open(file))
 
