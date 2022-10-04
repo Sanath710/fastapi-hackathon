@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-import uvicorn, search_query_evaluator, map_scraping
+import uvicorn, search_query_evaluator, test_scraping
 
 app = FastAPI()
 
@@ -20,7 +20,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 @app.post("/find")
 @app.get("/find")
 async def find(lat : str, lon : str, search_type : str) :
-    return map_scraping.find_nearest(lat, lon, search_type)
+    return test_scraping.find_nearest(lat, lon, search_type)
 
 @app.post("/search")
 @app.get("/search")
