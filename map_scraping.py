@@ -1,14 +1,18 @@
 from selenium import webdriver
-import os
+import os, time
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-options = Options()
-options.add_argument("start-maximized")
-browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-browser.get("https://www.google.com")
+CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+    
+chrome_options = webdriver.ChromeOptions()
+    
+chrome_options.binary_location = '.apt/usr/bin/google-chrome-stable'
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('headless')
+    
+browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
 def find_nearest(lat, lon, search) :
     
@@ -18,6 +22,7 @@ def find_nearest(lat, lon, search) :
     elif search.lower() == "pharmacy" : url = "https://www.google.com/maps/search/pharmacy/@"+str(lat)+str(lon)
     
     browser.get(url)
+    time.sleep(3)
     
     cnt = 0
     while True :
