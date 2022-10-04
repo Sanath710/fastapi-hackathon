@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-import uvicorn, search_query_evaluator, test_scraping
+import uvicorn, search_query_evaluator
 
 app = FastAPI()
 
@@ -16,11 +16,6 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content=jsonable_encoder({"detail": exc.errors(), "Error": "Something went wrong"}),
 )
-
-@app.post("/find")
-@app.get("/find")
-async def find(lat : str, lon : str, search_type : str) :
-    return test_scraping.find_nearest(lat, lon, search_type)
 
 @app.post("/search")
 @app.get("/search")
