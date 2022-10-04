@@ -2,17 +2,15 @@ from selenium import webdriver
 import os, time
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
-CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
-    
 chrome_options = webdriver.ChromeOptions()
-    
-chrome_options.binary_location = '.apt/usr/bin/google-chrome-stable'
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('headless')
-    
-browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+
+browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 def find_nearest(lat, lon, search) :
     
