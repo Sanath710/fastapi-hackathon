@@ -18,6 +18,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 )
 
 @app.post("/search")
+@app.get("/search")
 async def search(query : str) :
     return search_query_evaluator.search_results(query)
 
