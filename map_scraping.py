@@ -1,5 +1,5 @@
 from selenium import webdriver
-import os, time
+import os
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -20,7 +20,6 @@ def find_nearest(lat, lon, search) :
     elif search.lower() == "pharmacy" : url = "https://www.google.com/maps/search/pharmacy/@"+str(lat)+str(lon)
     
     browser.get(url)
-    time.sleep(3)
     
     cnt = 0
     while True :
