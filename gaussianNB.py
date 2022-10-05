@@ -17,7 +17,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 # %matplotlib inline
 
 # Reading the train.csv by removing the last column since it's an empty column
-DATA_PATH = "dataset-gaussian_nb/Training.csv"
+DATA_PATH = "/dataset-gaussian_nb/Training.csv"
 data = pd.read_csv(DATA_PATH).dropna(axis = 1)
 
 # Checking whether the dataset is balanced or not
@@ -50,7 +50,7 @@ X, y, test_size = 0.2, random_state = 24)
 final_nb_model = GaussianNB()
 final_nb_model.fit(X, y)
 # Reading the test data
-test_data = pd.read_csv("dataset-gaussian_nb/Testing.csv").dropna(axis=1)
+test_data = pd.read_csv("/dataset-gaussian_nb/Testing.csv").dropna(axis=1)
  
 test_X = test_data.iloc[:, :-1]
 test_Y = encoder.transform(test_data.iloc[:, -1])
