@@ -69,6 +69,26 @@ data_dict = {
     "predictions_classes":encoder.classes_
 }
 
+def diseasePrecaution(disease) :
+    disease_dtls = {}
+    
+    desc_df = pd.read_csv("symptoms-dataset/symptom_Description.csv")
+    precaution_df = pd.read_csv("symptoms-dataset/symptom_precaution.csv")
+    
+    desc = desc_df[desc_df["Disease"] == disease.title()]
+    desc = [*desc["Description"].values]
+    
+    prec = precaution_df[precaution_df["Disease"] == disease.title()]
+    prec.drop(columns = "Disease", inplace=True)
+    
+    prec_lst = [*prec["Precaution_1"].values, *prec["Precaution_2"].values, *prec["Precaution_3"].values, *prec["Precaution_4"].values]
+    
+    disease_dtls = {disease:{"desc" : desc, "precaution" : prec}}
+#    print(desc)
+#    print(prec_lst)
+    
+    return disease_dtls
+    
 def predictDisease(symptoms):
     symptoms = symptoms.split(",")
     symptoms = [n.strip().title() for n in symptoms]
@@ -85,9 +105,8 @@ def predictDisease(symptoms):
     
     # generating individual outputs
     nb_prediction = data_dict["predictions_classes"][final_nb_model.predict(input_data)[0]]
-
     
-    return nb_prediction
+    return diseasePrecaution(nb_prediction)
 
 
 #print(predictDisease("Depression, irritability"))
