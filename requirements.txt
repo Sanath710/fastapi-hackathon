@@ -8,3 +8,5 @@ rake-nltk
 nltk
 selenium
 webdriver-manager
+seaborn
+sklearn
