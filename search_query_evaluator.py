@@ -146,7 +146,7 @@ def search_results(query) :
             if re.findall(kwrd, t) or re.findall(t,kwrd) :
                 d[t] = {"question" : dataframe[dataframe.tag == t].patterns.tolist(), "response" : dataframe[dataframe.tag == t].responses.tolist(), "transformed_query" : transformed_query}
     
-    if d.keys() : return json.dumps(d)
+    if d.keys() : return d
     else : return "Sorry, I didn't understood what you are saying.!"
 
 
