@@ -2,7 +2,8 @@ from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-import uvicorn, search_query_evaluator, gaussianNB
+import uvicorn, search_query_evaluator
+#import gaussianNB
 
 app = FastAPI()
 
