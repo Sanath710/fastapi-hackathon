@@ -145,7 +145,7 @@ def search_results(query) :
         for kwrd in keywords :
             if re.findall(kwrd, t) or re.findall(t,kwrd) :
                 d[t] = {"question" : dataframe[dataframe.tag == t].patterns.tolist(), "response" : dataframe[dataframe.tag == t].responses.tolist(), "transformed_query" : transformed_query}
-    
+                d[t]["response"] = str(*d["headache"]["response"])[1:-2]
     if d.keys() : return d
     else : return "Sorry, I didn't understood what you are saying.!"
 
