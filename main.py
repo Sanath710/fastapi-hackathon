@@ -22,10 +22,12 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 async def search(query : str) :
     return search_query_evaluator.search_results(query)
 
+"""
 @app.post("/predict")
 @app.get("/predict")
 async def predict(query : str) :
     return gaussianNB.predictDisease(query)
+"""
 
 if __name__ == "__main__" :
     uvicorn.run(app, host="localhost", port=8000)
