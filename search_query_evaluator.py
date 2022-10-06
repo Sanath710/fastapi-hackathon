@@ -147,7 +147,7 @@ def search_results(query) :
                 d[t] = {"question" : dataframe[dataframe.tag == t].patterns.tolist(), "response" : dataframe[dataframe.tag == t].responses.tolist(), "transformed_query" : transformed_query}
                 d[t]["response"] = str(*d[t]["response"])[1:-2]
     if d.keys() : return d
-    else : return "Sorry, I didn't understood what you are saying.!"
+    else : return {"response":"Sorry, I didn't understood what you are saying.!"}
 
 
 # In[228]:
