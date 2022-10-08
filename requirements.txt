@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 gunicorn
+pyenchant
 requests
 pandas
 googletrans==3.1.0a0
@@ -10,4 +11,3 @@ selenium
 webdriver-manager
 seaborn
 sklearn
-pyenchant
