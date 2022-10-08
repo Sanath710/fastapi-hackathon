@@ -154,7 +154,7 @@ def search_results(query) :
     
     if d.keys() : 
         d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
-        return json.dumps(d)
+        return d
     else :
         """
         keywords = []
@@ -173,7 +173,7 @@ def search_results(query) :
 
         if temp .keys() : 
             temp["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
-            return json.dumps(temp)
+            return temp
         
         d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
         """
