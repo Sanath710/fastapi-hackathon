@@ -13,7 +13,7 @@
 # In[187]:
 
 
-import json, nltk, string, pandas as pd, os, re
+import json, nltk, string, pandas as pd, os, re, enchant
 from rake_nltk import Rake
 # from nltk.stem import WordNetLemmatizer
 # from nltk.corpus import stopwords
@@ -137,7 +137,13 @@ patterns = list(dataframe.patterns)
 
 
 def search_results(query) :
+    
     d = dict()
+#     greets = ["Hi", "Hello", "Hey"]
+    
+#     if query in greets :
+#         return "Greet_initiate" : "Hello, ACE here.\nHow can I help you ?"
+    
     keywords, transformed_query = search(query)
     global tags, patterns, dataframe
     
@@ -145,11 +151,39 @@ def search_results(query) :
         for kwrd in keywords :
             if re.findall(kwrd, t) or re.findall(t,kwrd) :
                 d[t] = {"question" : dataframe[dataframe.tag == t].patterns.tolist(), "response" : dataframe[dataframe.tag == t].responses.tolist(), "transformed_query" : transformed_query}
-                d[t]["response"] = str(*d[t]["response"])[1:-2]
-    if d.keys() : return d
-    else : return {"response":"Sorry, I didn't understood what you are saying.!"}
+    
+    if d.keys() : 
+        d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
+        return json.dumps(d)
+    else :
+        keywords = []
+        
+        d = enchant.Dict("en_US")
+        
+        for w in query.split(" ") :
+            if d.check(w) : keywords.append(w)
+        #print(keywords)
+ 
+        temp = {}
+        for t, p in zip(tags, patterns) :
+            for kwrd in keywords :
+                if re.findall(kwrd, t) or re.findall(t, kwrd) :
+                    temp[t] = {"question" : dataframe[dataframe.tag == t].patterns.tolist(), "response" : dataframe[dataframe.tag == t].responses.tolist(), "transformed_query" : transformed_query}
 
+        if temp .keys() : 
+            d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
+            return json.dumps(temp)
+        
+        d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
+        return {"err":"Sorry, I didn't understood what you are saying.!"}
 
+    
+def initiate_ACE(query) :
+    try :
+        #query = input("Search : ")
+        return search_results(query)
+    except :
+        return {"err":"Sorry, I didn't understood what you are saying.!"}
 # In[228]:
 
 
