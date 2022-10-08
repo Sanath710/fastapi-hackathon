@@ -2,7 +2,7 @@ fastapi
 uvicorn
 gunicorn
 pyenchant
-enchant2
+--no-binary pyenchant
 requests
 pandas
 googletrans==3.1.0a0
