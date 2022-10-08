@@ -156,6 +156,7 @@ def search_results(query) :
         d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
         return json.dumps(d)
     else :
+        """
         keywords = []
         
         d = enchant.Dict("en_US")
@@ -175,6 +176,7 @@ def search_results(query) :
             return json.dumps(temp)
         
         d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
+        """
         return {"err":"Sorry, I didn't understood what you are saying.!"}
 
     
