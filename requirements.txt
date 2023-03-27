@@ -9,4 +9,4 @@ nltk
 selenium
 webdriver-manager
 seaborn
-sklearn
+scikit-learn
