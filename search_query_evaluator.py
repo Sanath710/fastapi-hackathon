@@ -23,7 +23,7 @@ from googletrans import Translator as tns
 # In[4]:
 
 
-nltk.download('stopwords')
+#nltk.download('stopwords')
 
 
 # ### **Language Transformation**
