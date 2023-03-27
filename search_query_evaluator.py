@@ -3,14 +3,14 @@
 
 # ### **Required Dependencies**
 
-# In[2]:
+# In[186]:
 
 
 # !pip install googletrans==3.1.0a0
 # !pip install rake-nltk
 
 
-# In[3]:
+# In[187]:
 
 
 import json, nltk, string, pandas as pd, os, re
@@ -20,7 +20,7 @@ from rake_nltk import Rake
 from googletrans import Translator as tns
 
 
-# In[4]:
+# In[188]:
 
 
 #nltk.download('stopwords')
@@ -28,7 +28,7 @@ from googletrans import Translator as tns
 
 # ### **Language Transformation**
 
-# In[5]:
+# In[189]:
 
 
 def lang_transform(query) :
@@ -38,7 +38,7 @@ def lang_transform(query) :
 
 # ### **Key Term Extraction**
 
-# In[6]:
+# In[190]:
 
 
 # stop_words = stopwords.words("english")
@@ -58,7 +58,7 @@ def search(query) :
 
 # ### **Data Munging & Visualization**
 
-# In[7]:
+# In[191]:
 
 
 file = "dataset.json"
@@ -70,51 +70,51 @@ dataset = json.load(open(file))
 #     dataset = json.loads(f.read())
 
 
-# In[8]:
+# In[192]:
 
 
 dataframe = pd.DataFrame.from_dict(dataset["intents"])
 
 
-# In[9]:
+# In[193]:
 
 
 dataframe.drop(columns="context_set", inplace=True) # Empty Useless
 # dataframe.rename(columns = {"tag":"symptoms"}, inplace=True)
 
 
-# In[10]:
+# In[194]:
 
 
 # dataframe.shape
 
 
-# In[11]:
+# In[195]:
 
 
 # dataframe.columns
 
 
-# In[12]:
+# In[196]:
 
 
 # dataframe.info()
 
 
-# In[13]:
+# In[197]:
 
 
 dataframe.tag = [str(n).lower() for n in dataframe.tag]
 dataframe.patterns = [str(n).lower() for n in dataframe.patterns]
 
 
-# In[14]:
+# In[198]:
 
 
 # dataframe
 
 
-# In[15]:
+# In[199]:
 
 
 # Empty Checks
@@ -125,7 +125,7 @@ for r in dataframe["responses"].values :
 # print("Empty Rows \t: ", cnt, "\nNon-Empty Rows  : ",len(dataframe.responses)-cnt,"\nTotal Rows \t: ",len(dataframe.responses))
 
 
-# In[16]:
+# In[200]:
 
 
 tags = list(dataframe.tag)
@@ -133,14 +133,7 @@ patterns = list(dataframe.patterns)
 #tags
 
 
-# In[17]:
-
-
-#!pip install pyenchant
-#import enchant
-
-
-# In[18]:
+# In[229]:
 
 
 def search_results(query) :
@@ -161,8 +154,9 @@ def search_results(query) :
     
     if d.keys() : 
         d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
-        return json.dumps(d)
+        return d
     else :
+        """
         keywords = []
         
         d = enchant.Dict("en_US")
@@ -179,21 +173,24 @@ def search_results(query) :
 
         if temp .keys() : 
             temp["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
-            return json.dumps(temp)
+            return temp
         
         d["Greet_terminate"] = "Have a fast recovery & healthy hygiene.\nIf you are not satisfied with the response text me HELP"
+        """
         return {"err":"Sorry, I didn't understood what you are saying.!"}
 
-
-# In[19]:
-
-
+    
 def initiate_ACE(query) :
     try :
         #query = input("Search : ")
         return search_results(query)
-    except Exception as e :
-        return {"err":e}
-        #return {"err":"Sorry, I didn't understood what you are saying.!."}
+    except :
+        return {"err":"Sorry, I didn't understood what you are saying.!"}
+# In[228]:
 
-# initiate_ACE()
+
+#query = input("Search : ")
+#search_results(query)
+
+#search_results("mane mathu dukhe sathe khasi bhi che")
+
