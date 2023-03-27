@@ -137,7 +137,7 @@ patterns = list(dataframe.patterns)
 
 
 #!pip install pyenchant
-import enchant
+#import enchant
 
 
 # In[18]:
