@@ -190,7 +190,7 @@ def search_results(query) :
 
 def initiate_ACE() :
     try :
-        query = input("Search : ")
+        #query = input("Search : ")
         return search_results(query)
     except :
         return {"err":"Sorry, I didn't understood what you are saying.!."}
