@@ -192,7 +192,8 @@ def initiate_ACE(query) :
     try :
         #query = input("Search : ")
         return search_results(query)
-    except :
-        return {"err":"Sorry, I didn't understood what you are saying.!."}
+    except Exception as e :
+        return {"err":e}
+        #return {"err":"Sorry, I didn't understood what you are saying.!."}
 
 # initiate_ACE()
