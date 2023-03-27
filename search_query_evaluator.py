@@ -188,7 +188,7 @@ def search_results(query) :
 # In[19]:
 
 
-def initiate_ACE() :
+def initiate_ACE(query) :
     try :
         #query = input("Search : ")
         return search_results(query)
