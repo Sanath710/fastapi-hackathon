@@ -24,6 +24,7 @@ from googletrans import Translator as tns
 
 
 nltk.download('stopwords')
+nltk.download('punkt')
 
 
 # ### **Language Transformation**
