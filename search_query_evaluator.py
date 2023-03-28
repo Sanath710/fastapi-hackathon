@@ -182,7 +182,7 @@ def search_results(query) :
 
     
 def initiate_ACE(query) :
-    return search(query)
+    return search_results(query)
     """
     try :
         #query = input("Search : ")
