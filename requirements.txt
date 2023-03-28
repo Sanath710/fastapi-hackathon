@@ -6,7 +6,6 @@ pandas
 googletrans==3.1.0a0
 rake-nltk
 nltk
-nltk.downloader stopwords
 selenium
 webdriver-manager
 seaborn
