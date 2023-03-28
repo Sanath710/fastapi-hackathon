@@ -16,7 +16,7 @@
 import json, nltk, string, pandas as pd, os, re
 from rake_nltk import Rake
 # from nltk.stem import WordNetLemmatizer
-# from nltk.corpus import stopwords
+from nltk.corpus import stopwords
 from googletrans import Translator as tns
 
 
