@@ -183,7 +183,7 @@ def search_results(query) :
 def initiate_ACE(query) :
     try :
         #query = input("Search : ")
-        return search(query)
+        return lang_transform(query)
         #return search_results(query)
     except :
         return {"err":"Sorry, I didn't understood what you are saying.!"}
