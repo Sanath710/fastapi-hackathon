@@ -181,16 +181,13 @@ def search_results(query) :
         return {"err":"Sorry, I didn't understood what you are saying.!"}
 
     
-def initiate_ACE(query) :
-    return search_results(query)
-    """
+def initiate_ACE(query) :  
     try :
         #query = input("Search : ")
-        
-        #return search_results(query)
+        return search_results(query)
     except :
         return {"err":"Sorry, I didn't understood what you are saying.!"}
-    """
+    
 # In[228]:
 
 
